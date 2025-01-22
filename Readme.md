@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Ольга Рябова](https://up.htmlacademy.ru/react-individual/3/user/1646879).
-* Наставник: `Неизвестно`.
+* Наставник: [Артур Галимов] (https://htmlacademy.ru/profile/id1237543).
 
 ---
 
