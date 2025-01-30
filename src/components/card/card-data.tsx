@@ -1,5 +1,14 @@
-import { CardProps } from '../../types';
 import { getRandom, getBoolean } from '../../utils';
+
+type CardProps = {
+  id?: number;
+  premium: boolean;
+  img: string;
+  price: number;
+  ratingStars: number;
+  cardName: string;
+  cardType: string;
+};
 
 const mockCard = (index: number): CardProps => ({
   id: index,
@@ -12,7 +21,6 @@ const mockCard = (index: number): CardProps => ({
 });
 
 const getArrayCards = (number: number) => Array.from({length: number}, (_, index) => mockCard(index));
-// const cards: CardProps[] = getArrayCards();
 
 export {getArrayCards};
 
