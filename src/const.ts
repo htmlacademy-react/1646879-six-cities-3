@@ -1,16 +1,11 @@
-const mainPageProps = {
-  placeCardCount: 5
-};
-
-const offerPageProps = {
-  placeCardCount: 3
-};
+const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'] as const;
+const MAX_RATING = 5;
 
 enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = '/offer/:id'
+  Offer = '/offer'
 }
 
 enum AuthorizationStatus {
@@ -20,8 +15,8 @@ enum AuthorizationStatus {
 }
 
 export {
-  mainPageProps,
-  offerPageProps,
+  CITIES,
+  MAX_RATING,
   AppRoute,
-  AuthorizationStatus
+  AuthorizationStatus,
 };
