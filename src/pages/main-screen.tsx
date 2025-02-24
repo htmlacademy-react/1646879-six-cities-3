@@ -1,10 +1,16 @@
+import { NavLink } from 'react-router-dom';
 import PlaceCard from '../components/card/card';
 import Header from '../components/header/header';
-import {getArrayCards} from '../components/card/card-data';
-import { PlaceCardCount } from '../types';
+import { CardProps } from '../types';
+import { CITIES } from '../const';
+import { useActiveOffer } from '../utils';
 
-function MainScreen({placeCardCount}: PlaceCardCount): JSX.Element {
-  const cards = getArrayCards(placeCardCount);
+type MainScreenProps = {
+  offers: CardProps[];
+}
+
+function MainScreen({offers}: MainScreenProps): JSX.Element {
+  const {handleCardHover} = useActiveOffer();
 
   return (
     <div className="page page--gray page--main">
@@ -15,36 +21,19 @@ function MainScreen({placeCardCount}: PlaceCardCount): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
+              {
+                CITIES.map((city, index) => {
+                  const key = index;
+
+                  return (
+                    <li className="locations__item" key={key}>
+                      <NavLink className='locations__item-link tabs__item' to="#">
+                        <span>{city}</span>
+                      </NavLink>
+                    </li>
+                  );
+                })
+              }
             </ul>
           </section>
         </div>
@@ -69,15 +58,12 @@ function MainScreen({placeCardCount}: PlaceCardCount): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {cards.map((card) => (
+                {offers.map((offer) => (
                   <PlaceCard
-                    key={card.id}
-                    premium={card.premium}
-                    img={card.img}
-                    price={card.price}
-                    ratingStars={card.ratingStars}
-                    cardName={card.cardName}
-                    cardType={card.cardType}
+                    key={offer.id}
+                    offer={offer}
+                    pageType='main'
+                    handleCardHover={handleCardHover}
                   />
                 ))};
               </div>
