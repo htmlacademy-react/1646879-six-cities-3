@@ -127,8 +127,7 @@ function OfferScreen({offers, reviews, authorizationStatus}: OfferScreenProps): 
                 <Reviews
                   reviews={reviews}
                   isAuth={authorizationStatus === AuthorizationStatus.Auth}
-                >
-                </Reviews>
+                />
               </section>
             </div>
           </div>
