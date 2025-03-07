@@ -1,6 +1,5 @@
-import { getRandom, getBoolean } from '../../utils';
+import { getRandom, getBoolean, getArray } from '../../utils';
 import { ReviewProps } from '../../types';
-import { getArray } from '../../utils';
 
 const REVIEWS_COUNT = getRandom(1, 5);
 
