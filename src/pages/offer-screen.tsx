@@ -7,12 +7,16 @@ import Page404 from './page404';
 import { useActiveOffer } from '../utils';
 import Reviews from '../components/reviews/reviews';
 import { AuthorizationStatus } from '../const';
+import Map from '../components/map/map';
 
 type OfferScreenProps = {
   offers: CardProps[];
   reviews: ReviewProps[];
   authorizationStatus: AuthorizationStatus;
 };
+
+const BEGIN = 0;
+const END = 3;
 
 function OfferScreen({offers, reviews, authorizationStatus}: OfferScreenProps): JSX.Element {
   const { id } = useParams();
@@ -23,7 +27,13 @@ function OfferScreen({offers, reviews, authorizationStatus}: OfferScreenProps): 
     return <Page404 type='offer' />;
   }
 
-  const {type, bedrooms, maxAdults, goods, images, isPremium, title, rating, price, host, description} = currentOffer;
+  const {type, bedrooms, maxAdults, goods, images, isPremium, title, rating, price, host, description, city} = currentOffer;
+
+  const nearOffers = offers
+    .filter((offer) => offer.id !== id && offer.city.name === city.name)
+    .slice(BEGIN, END);
+
+  const nearOffersPlusCurrent = [currentOffer, ...nearOffers];
 
   return (
     <div>
@@ -131,13 +141,13 @@ function OfferScreen({offers, reviews, authorizationStatus}: OfferScreenProps): 
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map className='offer__map' city={city} offers={nearOffersPlusCurrent} activeOffer={currentOffer} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.map((offer) => (
+              {nearOffers.map((offer) => (
                 <PlaceCard
                   key={offer.id}
                   offer={offer}

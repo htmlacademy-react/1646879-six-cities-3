@@ -6,6 +6,7 @@ import { CardProps, CityType } from '../../types';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
 
 type MapProps = {
+  className: string;
   city: CityType;
   offers: CardProps[];
   activeOffer: CardProps | null;
@@ -23,7 +24,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({city, offers, activeOffer}: MapProps): JSX.Element {
+function Map({className, city, offers, activeOffer}: MapProps): JSX.Element {
   const containerRef = useRef(null);
   const map = useMap({containerRef, location: city.location});
 
@@ -60,15 +61,7 @@ function Map({city, offers, activeOffer}: MapProps): JSX.Element {
   }, [map, offers, activeOffer]);
 
   return (
-    <section
-      className="cities__map map"
-      ref={containerRef}
-      // style={{
-      //   height: '100%',
-      //   width: '100%',
-      //   maxWidth: '512px',
-      // }}
-    />
+    <section className={`${className} map`} ref={containerRef}></section>
   );
 }
 

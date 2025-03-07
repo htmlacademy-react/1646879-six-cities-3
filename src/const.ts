@@ -2,6 +2,7 @@ import { CityType } from './types';
 
 const CITIES: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 const MAX_RATING = 5;
+const CITY_DEFAULT = 'Paris';
 
 enum AppRoute {
   Main = '/',
@@ -73,6 +74,7 @@ const cityLocationDefault: Record<string, CityType> = {
 export {
   CITIES,
   MAX_RATING,
+  CITY_DEFAULT,
   AppRoute,
   AuthorizationStatus,
   URL_MARKER_DEFAULT,

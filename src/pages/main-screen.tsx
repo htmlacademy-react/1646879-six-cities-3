@@ -5,7 +5,7 @@ import Locations from '../components/locations/locations';
 import { CardProps, CityType } from '../types';
 import { useActiveOffer } from '../utils';
 import Map from '../components/map/map';
-import { cityLocationDefault } from '../const';
+import { CITY_DEFAULT, cityLocationDefault } from '../const';
 
 type MainScreenProps = {
   offers: CardProps[];
@@ -13,7 +13,7 @@ type MainScreenProps = {
 
 function MainScreen({offers}: MainScreenProps): JSX.Element {
   const {activeOffer, handleCardHover} = useActiveOffer();
-  const [currentCity, setCurrentCity] = useState({city: 'Amsterdam'});
+  const [currentCity, setCurrentCity] = useState({city: CITY_DEFAULT});
 
   const handleOffersFilter = (city: string) => {
     setCurrentCity({city: city});
@@ -64,7 +64,7 @@ function MainScreen({offers}: MainScreenProps): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section">
-              <Map city={locationCity} offers={filteredOffers} activeOffer={activeOffer} />
+              <Map className='cities__map' city={locationCity} offers={filteredOffers} activeOffer={activeOffer} />
             </div>
           </div>
         </div>

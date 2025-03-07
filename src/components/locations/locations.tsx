@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { CITIES } from '../../const';
+import { CITIES, CITY_DEFAULT } from '../../const';
 import { useState } from 'react';
 
 type LocationsProps = {
@@ -7,7 +7,7 @@ type LocationsProps = {
 }
 
 function Locations({handleOffersFilter}: LocationsProps): JSX.Element {
-  const [activeCity, setActiveCity] = useState({city: 'Amsterdam'});
+  const [activeCity, setActiveCity] = useState({city: CITY_DEFAULT});
 
   const getOffersActive = (city: string) => {
     setActiveCity({city: city});
