@@ -49,6 +49,8 @@ type ReviewProps = {
 }
 
 export {
+  type CityType,
+  type LocationType,
   type PageType,
   type CardProps,
   type ReviewProps,
